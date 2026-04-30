@@ -84,12 +84,15 @@ TASK_TYPES_TURBO = ["text2music", "repaint", "cover", "cover-nofsq"]
 # - extract: Separate individual tracks/stems from audio
 # - lego: Multi-track generation (add layers)
 # - complete: Automatic completion of partial audio
-# - edit: Flow-edit (#1156) — paired CFG, base-only.  Wired through the
-#   Gradio Edit mode in PR-C; HTTP /release_task still does not accept
-#   edit_target_caption/lyrics/window so clients hitting the raw API
-#   should treat ``edit`` as Python-API-only for now (will be wired in
-#   a follow-up).
-TASK_TYPES_BASE = ["text2music", "repaint", "cover", "cover-nofsq", "extract", "lego", "complete", "edit"]
+# Note: ``edit`` is supported on base variants (#1156) but intentionally
+# NOT advertised in this discovery list.  HTTP /release_task does not yet
+# accept edit_target_caption/lyrics/window in its request schema, so
+# advertising ``edit`` here would tell clients "edit works via API"
+# while the API can't actually populate the required target params.
+# The Gradio Edit mode (PR-C) is the only supported entrypoint until
+# the HTTP fields land in a follow-up; Python callers using
+# ``GenerationParams(task_type="edit")`` work directly via inference.
+TASK_TYPES_BASE = ["text2music", "repaint", "cover", "cover-nofsq", "extract", "lego", "complete"]
 
 
 # ==============================================================================

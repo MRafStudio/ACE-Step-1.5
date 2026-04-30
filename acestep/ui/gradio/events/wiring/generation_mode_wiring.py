@@ -175,6 +175,22 @@ def register_generation_mode_handlers(
         outputs=list(auto_checkbox_outputs),
     )
 
+    # Flow-edit type radio: applies preset n_min/n_max windows or unlocks
+    # the sliders for ``custom``.  Without this wiring the radio change
+    # would be inert and ``remix`` / ``custom`` would silently send the
+    # ``only_lyrics`` defaults.
+    from acestep.ui.gradio.interfaces.generation_tab_edit_controls import (
+        on_edit_type_change as _on_edit_type_change,
+    )
+    generation_section["edit_type"].change(
+        fn=_on_edit_type_change,
+        inputs=[generation_section["edit_type"]],
+        outputs=[
+            generation_section["edit_n_min"],
+            generation_section["edit_n_max"],
+        ],
+    )
+
     generation_section["repaint_mode"].change(
         fn=_on_repaint_mode_change,
         inputs=[
