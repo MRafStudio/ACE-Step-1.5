@@ -261,3 +261,49 @@ docs/.vitepress/dist/
 docs/.vitepress/cache/
 docs/en/awesome.md
 package-lock.json
+
+# ============================================================
+#   AceStep-1.5 Portable — Дополнения
+# ============================================================
+
+# --- Visual Studio ---
+.vs/
+*.sln
+*.suo
+*.user
+*.userosscache
+
+# --- pip кэш (наш portable) ---
+pip/cache/
+pip-cache/
+
+# --- Модели (большие файлы) ---
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.ckpt
+
+# --- Выходные данные ---
+gradio_outputs/
+outputs/
+output/
+
+# --- Логи и временные ---
+*.tmp
+*.temp
+*.bak
+
+# --- Данные portable-скриптов ---
+data/
+temp/
+tmp/
+
+# --- IDE ---
+.idea/
+.vscode/
+*.code-workspace
+
+# --- Системные ---
+Thumbs.db
+desktop.ini
